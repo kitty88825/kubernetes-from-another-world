@@ -35,3 +35,12 @@ kubectl get pods
 ```
 kubectl describe pod foo
 ```
+
+## Local 進行訪問
+> Note：由於 Kubernetes 的特性，大多數資源和服務都是在集群內部運行，通常無法直接從本地機器訪問。
+
+將集群內 foo Pod 的 8080 port 映射到本地主機的 8080 port
+```
+kubectl port-forward pod/foo 8080:8080
+```
+並訪問 http://localhost:8080
