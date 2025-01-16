@@ -29,3 +29,20 @@ kubectl -n kubernetes-dashboard port-forward svc/kubernetes-dashboard-kong-proxy
 ```
 並訪問網址
 https://localhost:8443
+
+產生預設 Service Account Token
+```
+kubectl apply -f https://raw.githubusercontent.com/MikeHsu0618/kubernetes-from-another-world/refs/heads/main/ch4/default-sa.yaml
+```
+![image](https://github.com/user-attachments/assets/8d972367-33bc-4662-8871-d1a1ad9f26c7)
+
+查看 kube-system 命名空間中名為 default 的 Secret 資源的詳細資訊
+```
+kubectl -n kube-system describe secrets default
+```
+![image](https://github.com/user-attachments/assets/388eb45a-b2d1-474e-935e-033adb8f04de)
+
+將 token 放入變數中
+```
+TOKEN=$(kubectl -n kube-system describe secrets default | awk '$1=="token:"{print $2}')
+```
