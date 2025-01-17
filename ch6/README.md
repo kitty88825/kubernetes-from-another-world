@@ -49,10 +49,12 @@ spec:
 
 ```
 
+
 ## 執行 Service 和 Pod
 ```
 kubectl apply -f pod.yaml,service.yaml
 ```
+> Note：查看 http://localhost:8000
 
 ## 查看所有 Service
 ```
