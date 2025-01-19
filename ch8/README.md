@@ -102,3 +102,16 @@ curl foo-statefulset-1.foo-service
 kubectl rollout restart statefulset foo-statefulset
 ```
 可以觀察到 StatefulSet 照著預期，依序由最後重新啟動並且等到每個 Pod 的前一位依賴者狀態為 Running 後才開始更新。
+
+## 刪除 StatefulSet
+刪除 StatefulSet 管理的 Pod 並不會刪除關聯的 PVC。
+
+刪除 foo-statefulset
+```
+kubectl delete  statefulset foo-statefulset
+```
+
+刪除 PVC
+```
+kubectl delete pvc pvc-foo-statefulset-0 pvc-foo-statefulset-1 pvc-foo-statefulset-2
+```
